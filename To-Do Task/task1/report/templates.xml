@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+
+        <template id="task1_report_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="task1.custom_external_layout">
+                        <div class="page">
+
+                            <style>
+                                .table th{
+                                text-align: left;
+                                }
+                            </style>
+
+                            <table class="table table-borderless" style="width:70%">
+                                <tr>
+                                    <th>Task:</th>
+                                    <td>
+                                        <span t-esc="doc.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Due Date:</th>
+                                    <td>
+                                        <span t-esc="doc.date"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Assign To:</th>
+                                    <td>
+                                        <span t-esc="doc.partner_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Estimated Time:</th>
+                                    <td>
+                                        <span t-esc="doc.estimated_time"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+
+                            <div class="description">
+                                <h4>Description:</h4>
+                                <span t-esc="doc.description"/>
+                            </div>
+                            <br/><br/>
+
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th colspan="4">Timesheet</th>
+                                </tr>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Date</td>
+                                    <td>Description</td>
+                                    <td>Time</td>
+                                </tr>
+                                <t t-set="sequence_number" t-value="0"/>
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <t t-set="sequence_number" t-value="sequence_number+1"/>
+                                            <span t-esc="sequence_number"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.date"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.description"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line.duration"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <th colspan="3">Total Time</th>
+                                    <td>
+                                        <span t-esc="doc.total_lines_time"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+
+        <record id="task1_report" model="ir.actions.report">
+            <field name="name">Print Task</field>
+            <field name="model">task1.todo</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">task1.task1_report_view</field>
+            <field name="report_file">task1.task1_report_view</field>
+            <field name="binding_model_id" ref="model_task1_todo"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>
